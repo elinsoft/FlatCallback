@@ -125,11 +125,10 @@ Above code can be simplified using java 8 :
 		});
 
 
-Flat callback make things easier.
 
 
 
-  FlatCallback fc = new FlatCallback();
+FlatCallback fc = new FlatCallback();
   fc.put("phone number",phoneNumber);
   
   fc.init(()->{
@@ -167,5 +166,7 @@ Flat callback make things easier.
   });
   
   
+Flat callback make things easier.
+
 Note that, exception is fired in each callback , FlatCallback can handle it. And FlatCallback supports map, so callbacks can put/get parameters to/from FlatCallback.
 
