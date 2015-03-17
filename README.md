@@ -125,48 +125,48 @@ Above code can be simplified using java 8 :
 		});
 
 
-
-
-
-FlatCallback fc = new FlatCallback();
-  fc.put("phone number",phoneNumber);
-  
-  fc.init(()->{
-    mVertx.eventBus().send(Properties.JDBC_MODULE_ADDRESS,
-  		new JsonObject()
-  		  .putString("action","select")
-  		  .putString("stmt","select id from customers where name=?")
-  		  .putArray( new JsonArray()
-  		    .addArray( new JsonArray()
-  		      .addString("tom")
-  		    )
-  		  )
-  		, fc);
-    }
-  )
-  .add((Message<Object> find) -> {
-    mVertx.eventBus().send(Properties.JDBC_MODULE_ADDRESS,
-    new JsonObject()
-      .putString("action","update")
-      .putString("stmt","update customers set phone_number=? where id=?")
-      .putArray( new JsonArray()
-        .addArray( new JsonArray()
-          .addString(fc.get("phone nubmer"))
-          .addNumber(id)
-        )
-      ) 
-      ,fc}
-    );
-  })
-  .finish(()->{
-    /* handle finish */
-  })
-  .error((Exeption ex)->{
-    /* handle error */
-  });
-  
-  
 Flat callback make things easier.
 
+
+
+
+	FlatCallback fc = new FlatCallback();
+	  fc.put("phone number",phoneNumber);
+	  
+	  fc.init(()->{
+	    mVertx.eventBus().send(Properties.JDBC_MODULE_ADDRESS,
+	  		new JsonObject()
+	  		  .putString("action","select")
+	  		  .putString("stmt","select id from customers where name=?")
+	  		  .putArray( new JsonArray()
+	  		    .addArray( new JsonArray()
+	  		      .addString("tom")
+	  		    )
+	  		  )
+	  		, fc);
+	    }
+	  )
+	  .add((Message<Object> find) -> {
+	    mVertx.eventBus().send(Properties.JDBC_MODULE_ADDRESS,
+	    new JsonObject()
+	      .putString("action","update")
+	      .putString("stmt","update customers set phone_number=? where id=?")
+	      .putArray( new JsonArray()
+	        .addArray( new JsonArray()
+	          .addString(fc.get("phone nubmer"))
+	          .addNumber(id)
+	        )
+	      ) 
+	      ,fc}
+	    );
+	  })
+	  .finish(()->{
+	    /* handle finish */
+	  })
+	  .error((Exeption ex)->{
+	    /* handle error */
+	  });
+	  
+  
 Note that, exception is fired in each callback , FlatCallback can handle it. And FlatCallback supports map, so callbacks can put/get parameters to/from FlatCallback.
 
