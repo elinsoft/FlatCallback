@@ -84,9 +84,9 @@ Above code can be simplified using java 8 :
 		, 
 		// heres callback
 		// changed to lambda expresssion
-    (Message<Object> find) -> {
-      JsonObject jFind = (JsonObject)find.body();
-			String status = returned.getString("status");
+    		(Message<Object> find) -> {
+      		JsonObject jFind = (JsonObject)find.body();
+		String status = returned.getString("status");
 			if("ok".equals(status)) {
 			  JsonArray result = jFind.getArray("result");
 			  if(result.length()>0) {
@@ -126,6 +126,8 @@ Above code can be simplified using java 8 :
 
 
 Flat callback make things easier.
+
+
 
   FlatCallback fc = new FlatCallback();
   fc.put("phone number",phoneNumber);
