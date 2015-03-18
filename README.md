@@ -41,17 +41,17 @@ Code will be like below :
         		  )
           	,
           	// callback again
-        		new Handler<Message>() {
-        			@Override
-        			public void handle(Message update) {
-        				JsonObject jUpdate = (JsonObject)update.body();
-        				if("ok".equals(jUpdate.getString("status")) {
-        				  /* sucessful*/
-        				}
-        				else {
-        				}
-  					  }
-  					 }
+        	new Handler<Message>() {
+        		@Override
+        		public void handle(Message update) {
+        			JsonObject jUpdate = (JsonObject)update.body();
+        			if("ok".equals(jUpdate.getString("status")) {
+        			  /* sucessful*/
+        			}
+        			else {
+        			}
+  			}
+  		}
           }
           else {
             /* not found */
@@ -168,5 +168,5 @@ Flat callback make things easier.
 	  });
 	  
   
-Note that, exception is fired in each callback , FlatCallback can handle it. And FlatCallback supports map, so callbacks can put/get parameters to/from FlatCallback.
+Note that, when exception is fired in each callback , FlatCallback can handle it. And FlatCallback supports map, so callbacks can put/get parameters to/from FlatCallback.
 
