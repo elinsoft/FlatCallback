@@ -165,7 +165,8 @@ Flat callback make things easier.
 	  })
 	  .error((Exeption ex)->{
 	    /* handle error */
-	  });
+	  })
+	  .start();
 	  
   
 Note that, when exception is fired in each callback , FlatCallback can handle it. And FlatCallback supports map, so callbacks can put/get parameters to/from FlatCallback.
